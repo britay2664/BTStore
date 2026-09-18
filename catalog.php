@@ -1,3 +1,56 @@
+<?php
+session_start();
+
+require_once 'includes/database.php';
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $productId = (int) $_POST['product_id'];
+
+    // Add one product to the cart
+    if (isset($_POST['add_to_cart'])) {
+
+        if (isset($_SESSION['cart'][$productId])) {
+            $_SESSION['cart'][$productId]++;
+        } else {
+            $_SESSION['cart'][$productId] = 1;
+        }
+    }
+
+    // Decrease product quantity by one
+    if (isset($_POST['decrease_quantity'])) {
+
+        if (isset($_SESSION['cart'][$productId])) {
+
+            $_SESSION['cart'][$productId]--;
+
+            // Quantity cannot be less than zero
+            if ($_SESSION['cart'][$productId] <= 0) {
+                unset($_SESSION['cart'][$productId]);
+            }
+        }
+    }
+
+    // Completely remove product from cart
+    if (isset($_POST['remove_from_cart'])) {
+
+        if (isset($_SESSION['cart'][$productId])) {
+            unset($_SESSION['cart'][$productId]);
+        }
+    }
+}
+
+$sql = "SELECT ProductId, ProductName, ProductDescription, ProductCost
+        FROM products
+        ORDER BY ProductId";
+
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,14 +75,78 @@
     </nav>
 
     <main>
-        <h2>Product Catalog</h2>
+    <h2>Product Catalog</h2>
 
-        <p>Our product catalog is currently under construction.</p>
+    <p>Select from our available products.</p>
+
+    <div class="products">
+
+        <?php if ($result && $result->num_rows > 0): ?>
+
+            <?php while ($product = $result->fetch_assoc()): ?>
+
+                <div class="product-card">
+
+                    <h3>
+                        <?php echo htmlspecialchars($product['ProductName']); ?>
+                    </h3>
+
+                    <p>
+                        <strong>Product ID:</strong>
+                        <?php echo $product['ProductId']; ?>
+                    </p>
+
+                    <p>
+                        <?php echo htmlspecialchars($product['ProductDescription']); ?>
+                    </p>
+
+                    <p>
+                        <strong>Price:</strong>
+                        $<?php echo number_format($product['ProductCost'], 2); ?>
+                    </p>
 
         <p>
-            Product information and shopping cart functionality will be added
-            during future phases of development.
+            <strong>Quantity in Cart:</strong>
+            <?php
+            $productId = $product['ProductId'];
+
+            echo $_SESSION['cart'][$productId] ?? 0;
+            ?>
         </p>
+
+    <form method="POST" action="catalog.php">
+
+        <input
+            type="hidden"
+            name="product_id"
+            value="<?php echo $product['ProductId']; ?>"
+        >
+
+        <button type="submit" name="add_to_cart">
+            + Add
+        </button>
+
+        <button type="submit" name="decrease_quantity">
+            - Remove One
+        </button>
+
+        <button type="submit" name="remove_from_cart">
+            Remove All
+        </button>
+
+    </form>
+
+        </div>
+
+        <?php endwhile; ?>
+
+        <?php else: ?>
+
+            <p>No products are currently available.</p>
+
+        <?php endif; ?>
+
+    </div>
     </main>
 
     <footer>
@@ -39,3 +156,4 @@
 </body>
 
 </html>
+
