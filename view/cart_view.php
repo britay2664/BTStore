@@ -13,8 +13,9 @@
 <body>
 
     <header>
-        <h1>BTStore</h1>
-        <p>Shopping Cart</p>
+    <h1>BTStore</h1>
+    
+    <p>Electronic Order Processing System</p>
     </header>
 
     <nav>

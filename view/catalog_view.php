@@ -12,10 +12,20 @@
 
 <body>
 
+    
     <header>
-        <h1>BTStore</h1>
-        <p>Product Catalog</p>
+    <h2>WELCOME TO BTSTORE</h2>
+
+        <p>
+            BTStore is an online store project created for Server-side Scripting with PHP.
+        </p>
+
+        <p>
+            Browse our product catalog and add your favorite technology products to your cart.
+        </p>
+    <p>COMPUTERS • ELECTRONICS • TOMORROW'S TECHNOLOGY</p>
     </header>
+    
 
     <nav>
     <a href="/BTStore/index.php">Home</a>
@@ -25,9 +35,9 @@
 
     <main>
 
-        <h2>Product Catalog</h2>
+        <h2>The BTStore Computer Catalog</h2>
 
-        <p>Select from our available products.</p>
+        <p>Tomorrow's technology. Available today.</p>
 
         <div class="products">
 
