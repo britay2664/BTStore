@@ -11,31 +11,36 @@
 <body>
 
     <header>
-        <h1>BTStore</h1>
-        <p>Your simple online technology store</p>
+        <h1>Your Company</h1>
+        <p>COMPUTERS • ELECTRONICS • TECHNOLOGY</p>
     </header>
 
     <nav>
-        <a href="index.php">Home</a>
-        <a href="catalog.php">Catalog</a>
-        <a href="cart.php">Cart</a>
+        <a href="/BTStore/index.php">Home</a>
+        <a href="/BTStore/catalog.php">Catalog</a>
+        <a href="/BTStore/cart.php">Cart</a>
     </nav>
 
     <main>
-        <h2>Welcome to BTStore</h2>
+
+        <h2>WELCOME TO Your Company</h2>
+
         <p>
-            BTStore is an online store project created for Server-side Scripting with PHP.
+            Your headquarters for personal computing and electronic technology.
         </p>
 
         <p>
-            Browse our product catalog and add your favorite technology products to your cart.
+            Explore the latest equipment for your home, office, and digital future.
         </p>
 
-        <a class="button" href="catalog.php">View Products</a>
+        <a class="button" href="/BTStore/catalog.php">
+            VIEW PRODUCTS
+        </a>
+
     </main>
 
     <footer>
-        <p>BTStore - SDC310L Course Project</p>
+        <p>YOUR COMPANY // TECHNOLOGY FOR THE DIGITAL FUTURE</p>
     </footer>
 
 </body>

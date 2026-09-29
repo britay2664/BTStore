@@ -14,16 +14,8 @@
 
     
     <header>
-    <h2>WELCOME TO BTSTORE</h2>
-
-        <p>
-            BTStore is an online store project created for Server-side Scripting with PHP.
-        </p>
-
-        <p>
-            Browse our product catalog and add your favorite technology products to your cart.
-        </p>
-    <p>COMPUTERS • ELECTRONICS • TOMORROW'S TECHNOLOGY</p>
+    <h1>Your Company</h1>
+    <p>COMPUTERS • ELECTRONICS • TECHNOLOGY</p>
     </header>
     
 
